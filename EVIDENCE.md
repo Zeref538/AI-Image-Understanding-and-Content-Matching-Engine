@@ -74,7 +74,7 @@ One proof per requirement in Section 6 of the brief. Everything was run on 6 Oct
   posts with no suitable image correctly refused: 3/3
   PASS  P5 eval reports top-1 precision 13/13, and the README states the same number
   ```
-  Labels: `eval/post_labels.json` (16 posts, 10 tune / 6 test), `eval/image_labels.json` (50 images, checked by eye). The README states the sample size and the limits of a perfect score on 16 posts.
+  Labels: `eval/post_labels.json` (16 posts, 9 tune / 7 test), `eval/image_labels.json` (50 images, checked by eye). The README states the sample size and the limits of a perfect score on 16 posts.
 
 - [x] **README with architecture explanation and diagram; the required files present.**
   `README.md` (diagram, run + seed, how the thresholds were picked, limitations), `capstone.yaml`, `EVIDENCE.md`, `BUILDLOG.md`, `.env.example`, `DESIGN.md`, `LICENSE`.

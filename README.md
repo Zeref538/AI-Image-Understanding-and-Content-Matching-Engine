@@ -1,5 +1,7 @@
 # AI Image Understanding & Content Matching Engine
 
+### [Read the case study →](https://zeref538.github.io/AI-Image-Understanding-and-Content-Matching-Engine/)
+
 Looks at an image library, works out what is in each image, and matches images to blog posts by meaning, not filenames. A red-fox post gets a red-fox photo. A wolf that looks similar is refused with a reason. When nothing fits, it says "no confident match" and explains why.
 
 FlyRank backend track capstone. Python, FastAPI, PostgreSQL, local models through Ollama ($0, no account, no key). Design: [DESIGN.md](DESIGN.md). Proof for every requirement: [EVIDENCE.md](EVIDENCE.md).
@@ -25,7 +27,7 @@ Measured on 6 Oct 2026 with qwen3.5:4b (vision and text) and all-minilm (embeddi
 
 ### How the thresholds were picked
 
-`scripts/eval.py --tune` sweeps the thresholds on the 10 **tune** posts only ([docs/tune-sweep.txt](docs/tune-sweep.txt)).
+`scripts/eval.py --tune` sweeps the thresholds on the 9 **tune** posts only ([docs/tune-sweep.txt](docs/tune-sweep.txt)).
 
 - **min_similarity = 0.45.** Every value from 0.20 to 0.45 gave 7/7 on the tune posts with no wrong pick; at 0.50 the dog post was missed (its best image scored 0.49). 0.45 is the strictest value that missed nothing.
 - **min_kind_prob = 0.80.** The tune posts gave no signal here (their top-ranked images were all confident). The image labels did: the three misnamed wolves scored 0.42, 0.72 and 0.75, and every correctly named image of a lookalike animal scored 0.74 or more. 0.80 flags all three errors at the cost of two correct images (a wolf at 0.74, a coyote at 0.76) held for review. At 0.60, `img-015` (a wolf called "arctic fox") would be eligible for fox posts. This threshold was chosen on all 50 image labels, with no held-out images.
@@ -62,7 +64,7 @@ open http://localhost:8001/review                      # the review table
 ```
 data/images/*.jpg --(POST /jobs tag_images)--> worker
     vision model (qwen3.5:4b) --> JSON --> Pydantic validation --(invalid: retry x3, then fail + alert)
-        |  kind_prob from token log-probabilities  -->  flagged if p < 0.60
+        |  kind_prob from token log-probabilities  -->  flagged if p < 0.80
         v
     image_metadata, image_tags  --embed(subject + caption + tags)-->  embeddings (all-minilm)
 
@@ -74,7 +76,7 @@ GET /posts/:id/images
     mismatch guard, per candidate:
         image flagged?            --> "Image classification uncertain, held for review: ..."
         kind differs?             --> "Animal category mismatch: expected fox, detected wolf"
-        similarity < threshold?   --> "Similarity 0.41 is below the 0.50 threshold"
+        similarity < threshold?   --> "Similarity 0.41 is below the 0.45 threshold"
     first accepted candidate = the suggestion, or "no_confident_match" + reasons
     every candidate is saved as a suggestion --> POST /suggestions/:id/approve | reject
 
@@ -109,7 +111,7 @@ every model call --> ai_calls (tokens, ms, reference cost)  -- budget guard chec
 
 16 posts in `data/posts.json`. The answers live separately in `eval/post_labels.json`, which the pipeline never reads: 13 posts have a correct subject in the corpus, and 3 (indoor cats, octopus camouflage, sourdough) have none, so the right answer is a refusal. Two posts use only a Latin name ("Vulpes vulpes", "Ursus arctos horribilis").
 
-The posts are split: 10 **tune** posts, which the thresholds were picked from, and 6 **test** posts held out, so the headline number is not only measured on the data it was tuned on.
+The posts are split: 9 **tune** posts, which the thresholds were picked from, and 7 **test** posts held out, so the headline number is not only measured on the data it was tuned on.
 
 ## Limitations
 
