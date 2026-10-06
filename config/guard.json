@@ -1,0 +1,6 @@
+{
+  "note": "Thresholds for the mismatch guard and the low-confidence flag. Picked from the tune split of the eval set by scripts/eval.py --tune; see README.",
+  "min_similarity": 0.5,
+  "min_kind_prob": 0.6,
+  "min_confidence": 0.5
+}

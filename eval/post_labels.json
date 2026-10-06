@@ -1,0 +1,21 @@
+{
+  "note": "The correct answer for each post: any image whose label in image_labels.json has this subject, or null when no image in the corpus fits. 'split' keeps 6 posts out of threshold tuning, so the reported number is not only measured on the data the thresholds were picked from.",
+  "posts": {
+    "red-fox-behavior":          {"expected": "red fox",      "split": "tune"},
+    "vulpes-vulpes-field-guide": {"expected": "red fox",      "split": "test"},
+    "fox-kits-spring":           {"expected": "red fox",      "split": "tune"},
+    "wolf-pack-winter-hunt":     {"expected": "gray wolf",    "split": "tune"},
+    "canis-lupus-yellowstone":   {"expected": "gray wolf",    "split": "test"},
+    "training-your-dog":         {"expected": "dog",          "split": "tune"},
+    "choosing-a-family-dog":     {"expected": "dog",          "split": "test"},
+    "grizzly-hibernation":       {"expected": "grizzly bear", "split": "tune"},
+    "ursus-arctos-horribilis":   {"expected": "grizzly bear", "split": "test"},
+    "mule-deer-migration":       {"expected": "mule deer",    "split": "tune"},
+    "why-deer-grow-antlers":     {"expected": "mule deer",    "split": "test"},
+    "coyotes-in-cities":         {"expected": "coyote",       "split": "tune"},
+    "wild-fox-species":          {"expected": "red fox",      "split": "test"},
+    "indoor-cats":               {"expected": null,           "split": "tune"},
+    "octopus-camouflage":        {"expected": null,           "split": "tune"},
+    "sourdough-at-home":         {"expected": null,           "split": "test"}
+  }
+}

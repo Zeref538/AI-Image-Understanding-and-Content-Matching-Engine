@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: images
+    ports:
+      - "5434:5432"   # 5434 on your machine, so it doesn't clash with another local Postgres
+    volumes:
+      - imagedata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d images"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  api:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/images
+      OLLAMA_URL: ${OLLAMA_URL_FROM_DOCKER:-http://host.docker.internal:11434}
+    ports:
+      - "8001:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets Linux Docker reach Ollama on the host too
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  worker:
+    build: .
+    command: ["python", "-m", "app.worker"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/images
+      OLLAMA_URL: ${OLLAMA_URL_FROM_DOCKER:-http://host.docker.internal:11434}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  imagedata:
