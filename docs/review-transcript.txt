@@ -1,0 +1,26 @@
+$ curl localhost:8001/posts/1/images?top=3   (red-fox-behavior)
+{
+ "status": "match",
+ "understood_as": {
+  "kind": "fox",
+  "subject": "red fox",
+  "category": "animal",
+  "summary": "A solitary red fox pounces on mice hidden under snow, caches extra food, and uses various calls to communicate with its family in spring."
+ }
+}
+suggestion: {"suggestion_id": 1, "image": {"id": 32, "file": "img-032.jpg", "kind": "fox", "subject": "red fox", "caption": "A red fox stands alert in a snowy landscape.", "flagged": false, "kind_prob": 0.970445}, "similarity": 0.7711, "reasons": ["Subject matches: fox", "Similarity 0.771 meets the 0.45 threshold", "Classification confident (kind p=0.97)"]}
+1 img-032.jpg fox 0.7711 accepted Subject matches: fox
+2 img-039.jpg fox 0.7648 accepted Subject matches: fox
+3 img-004.jpg fox 0.7647 accepted Subject matches: fox
+
+$ curl -X POST localhost:8001/suggestions/1/approve -d '{"note": "right fox"}'   (sent twice)
+{"suggestion_id":1,"decision":"approved","note":"right fox","reviewed_at":"2026-10-06T11:42:46.643636+00:00"}
+{"suggestion_id":1,"decision":"approved","note":"right fox","reviewed_at":"2026-10-06T11:42:46.643636+00:00"}
+
+$ curl localhost:8001/suggestions/1   (inspect why)
+{"id": 1, "slug": "red-fox-behavior", "file": "img-032.jpg", "rank": 1, "similarity": 0.77111787, "verdict": "accepted", "reasons": ["Subject matches: fox", "Similarity 0.771 meets the 0.45 threshold", "Classification confident (kind p=0.97)"], "decision": "approved", "note": "right fox"}
+
+$ curl -X POST localhost:8001/jobs -d '{"kind": "resize_everything"}'
+{"error":"invalid_request","message":"The request is invalid.","details":[{"field":"body.kind","problem":"Input should be 'tag_images' or 'index_posts'"}]}  -> HTTP 422
+$ curl localhost:8001/posts/999/images
+{"error":"not_found","message":"post 999 not found"}  -> HTTP 404

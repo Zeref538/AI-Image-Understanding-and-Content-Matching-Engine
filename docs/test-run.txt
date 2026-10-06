@@ -1,0 +1,42 @@
+﻿============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+plugins: anyio-4.15.1
+collecting ... collected 33 items
+
+tests/test_pipeline.py::test_tag_images_job_tags_every_image_and_logs_every_call PASSED [  3%]
+tests/test_pipeline.py::test_a_low_confidence_image_is_flagged_not_accepted PASSED [  6%]
+tests/test_pipeline.py::test_invalid_model_output_is_retried_then_failed_never_stored PASSED [  9%]
+tests/test_pipeline.py::test_a_model_outage_is_retried_and_recovers PASSED [ 12%]
+tests/test_pipeline.py::test_the_same_idempotency_key_returns_the_same_job PASSED [ 15%]
+tests/test_pipeline.py::test_a_rerun_only_does_what_is_missing PASSED    [ 18%]
+tests/test_pipeline.py::test_the_budget_guard_stops_a_job_before_it_spends PASSED [ 21%]
+tests/test_pipeline.py::test_fox_post_ranks_the_fox_first_and_suggests_it PASSED [ 24%]
+tests/test_pipeline.py::test_forcing_the_wolf_onto_the_fox_post_is_rejected PASSED [ 27%]
+tests/test_pipeline.py::test_a_post_with_no_suitable_image_says_so PASSED [ 30%]
+tests/test_pipeline.py::test_review_approve_and_reject_are_safe_to_repeat PASSED [ 33%]
+tests/test_pipeline.py::test_bad_input_is_a_clean_4xx PASSED             [ 36%]
+tests/test_reflag.py::test_changing_a_threshold_reflags_without_calling_the_model PASSED [ 39%]
+tests/test_vision_and_guard.py::test_valid_output_is_accepted_and_tidied PASSED [ 42%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad0] PASSED [ 45%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad1] PASSED [ 48%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad2] PASSED [ 51%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad3] PASSED [ 54%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad4] PASSED [ 57%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad5] PASSED [ 60%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad6] PASSED [ 63%]
+tests/test_vision_and_guard.py::test_invalid_output_is_refused[bad7] PASSED [ 66%]
+tests/test_vision_and_guard.py::test_non_json_is_refused PASSED          [ 69%]
+tests/test_vision_and_guard.py::test_kind_probability_reads_the_real_coyote_case PASSED [ 72%]
+tests/test_vision_and_guard.py::test_no_logprobs_means_no_measured_probability PASSED [ 75%]
+tests/test_vision_and_guard.py::test_flag_uses_the_measured_probability_not_just_the_claim PASSED [ 78%]
+tests/test_vision_and_guard.py::test_the_wolf_on_a_fox_post_is_rejected_with_the_reason PASSED [ 81%]
+tests/test_vision_and_guard.py::test_a_matching_confident_similar_image_is_accepted PASSED [ 84%]
+tests/test_vision_and_guard.py::test_low_similarity_is_rejected_even_when_the_kind_matches PASSED [ 87%]
+tests/test_vision_and_guard.py::test_a_flagged_image_is_held_for_review PASSED [ 90%]
+tests/test_vision_and_guard.py::test_an_unanalysed_image_is_never_accepted PASSED [ 93%]
+tests/test_vision_and_guard.py::test_plural_and_synonym_kinds_still_match PASSED [ 96%]
+tests/test_vision_and_guard.py::test_no_match_summary_explains_the_best_candidate_and_the_counts PASSED [100%]
+
+============================== 33 passed in 2.53s ==============================

@@ -1,0 +1,28 @@
+﻿probing http://localhost:8001
+PASS  P1 every image has schema-valid tags (50/50)
+PASS  P1 at least one low-confidence image is flagged, not guessed (5 flagged)
+      flagged img-013.jpg (coyote): uncertain kind: 'coyote' p=0.76 (also: animal 0.10, fox 0.05)
+      flagged img-015.jpg (gray wolf): uncertain kind: 'fox' p=0.72 (also: wolf 0.17, animal 0.08)
+      flagged img-024.jpg (gray wolf): uncertain kind: 'wolf' p=0.74 (also: animal 0.09, fox 0.04)
+      flagged img-040.jpg (gray wolf): uncertain kind: 'fox' p=0.42 (also: wolf 0.41, animal 0.09)
+      flagged img-050.jpg (gray wolf): uncertain kind: 'dog' p=0.75 (also: wolf 0.18, animal 0.03)
+PASS  P2 the first-ranked image for the red fox post is a red fox
+PASS  P2 wolf and dog rank clearly lower (first wolf at #7, first dog at #26)
+PASS  P2 the suggestion is a fox
+PASS  P3 the wolf (img-012.jpg) forced onto the fox post is REJECTED with a category mismatch
+      reasons: ['Animal category mismatch: expected fox, detected wolf', 'Similarity 0.421 is below the 0.45 threshold']
+PASS  P4 the octopus post answers no_confident_match with reasons
+      Best candidate img-050.jpg (dog, similarity 0.300) was refused: Image classification uncertain, held for review: uncertain kind: 'dog' p=0.75 (also: wolf 0.18, animal 0.03); Animal category mismatch: expected octopus, detected dog; Similarity 0.300 is below the 0.45 threshold
+      0 of 50 images passed: 50 subject mismatch, 50 below similarity threshold, 5 uncertain classification
+      top-1 precision: 13/13 = 1.0   (held-out test split: 6/6 = 1.0)
+      ranking alone, before the guard: 13/13 first-ranked images correct
+      suggestions made: 13, precision 1.0, wrong: none, missed: none
+      posts with no suitable image correctly refused: 3/3
+      fox/wolf boundary: {'fox_posts': 4, 'fox_image_similarity_min': 0.4197, 'fox_image_similarity_max': 0.8512, 'wolf_or_coyote_similarity_max': 0.6772, 'wolf_or_coyote_pairs_above_fox_min': 28, 'pairs': 52}
+      wrote eval/results.json
+PASS  P5 eval reports top-1 precision 13/13, and the README states the same number
+PASS  P6 every vision/embedding call is in the cost log with a cost (132 calls, at least 132)
+      embedding           all-minilm     66 calls     2156 in      0 out     433 micro-$  avg 51 ms
+      post_understanding  qwen3.5:4b     16 calls     2951 in    965 out     682 micro-$  avg 4334 ms
+      vision              qwen3.5:4b     50 calls    21740 in   4970 out    4163 micro-$  avg 8160 ms
+all probes passed

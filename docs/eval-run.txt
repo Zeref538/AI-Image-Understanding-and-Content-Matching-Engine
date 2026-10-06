@@ -1,0 +1,6 @@
+top-1 precision: 13/13 = 1.0   (held-out test split: 6/6 = 1.0)
+ranking alone, before the guard: 13/13 first-ranked images correct
+suggestions made: 13, precision 1.0, wrong: none, missed: none
+posts with no suitable image correctly refused: 3/3
+fox/wolf boundary: {'fox_posts': 4, 'fox_image_similarity_min': 0.4197, 'fox_image_similarity_max': 0.8512, 'wolf_or_coyote_similarity_max': 0.6772, 'wolf_or_coyote_pairs_above_fox_min': 28, 'pairs': 52}
+wrote eval/results.json

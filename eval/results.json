@@ -1,0 +1,297 @@
+{
+ "thresholds": {
+  "min_similarity": 0.45,
+  "min_kind_prob": 0.8,
+  "min_confidence": 0.5
+ },
+ "all": {
+  "posts": 16,
+  "posts_with_a_correct_image": 13,
+  "top1_precision": 1.0,
+  "top1_correct": 13,
+  "ranking_only_top1": "13/13",
+  "suggestions_made": 13,
+  "suggestion_precision": 1.0,
+  "wrong_suggestions": [],
+  "missed_posts": [],
+  "no_image_posts_refused": "3/3"
+ },
+ "tune": {
+  "posts": 9,
+  "posts_with_a_correct_image": 7,
+  "top1_precision": 1.0,
+  "top1_correct": 7,
+  "ranking_only_top1": "7/7",
+  "suggestions_made": 7,
+  "suggestion_precision": 1.0,
+  "wrong_suggestions": [],
+  "missed_posts": [],
+  "no_image_posts_refused": "2/2"
+ },
+ "test": {
+  "posts": 7,
+  "posts_with_a_correct_image": 6,
+  "top1_precision": 1.0,
+  "top1_correct": 6,
+  "ranking_only_top1": "6/6",
+  "suggestions_made": 6,
+  "suggestion_precision": 1.0,
+  "wrong_suggestions": [],
+  "missed_posts": [],
+  "no_image_posts_refused": "1/1"
+ },
+ "fox_wolf_boundary": {
+  "fox_posts": 4,
+  "fox_image_similarity_min": 0.4197,
+  "fox_image_similarity_max": 0.8512,
+  "wolf_or_coyote_similarity_max": 0.6772,
+  "wolf_or_coyote_pairs_above_fox_min": 28,
+  "pairs": 52
+ },
+ "per_post": [
+  {
+   "slug": "red-fox-behavior",
+   "split": "tune",
+   "expected": "red fox",
+   "post_kind": "fox",
+   "pick": {
+    "file": "img-032.jpg",
+    "truth": "red fox",
+    "similarity": 0.7711
+   },
+   "ranked_first": {
+    "file": "img-032.jpg",
+    "truth": "red fox",
+    "similarity": 0.7711
+   }
+  },
+  {
+   "slug": "vulpes-vulpes-field-guide",
+   "split": "test",
+   "expected": "red fox",
+   "post_kind": "fox",
+   "pick": {
+    "file": "img-006.jpg",
+    "truth": "red fox",
+    "similarity": 0.8512
+   },
+   "ranked_first": {
+    "file": "img-006.jpg",
+    "truth": "red fox",
+    "similarity": 0.8512
+   }
+  },
+  {
+   "slug": "fox-kits-spring",
+   "split": "tune",
+   "expected": "red fox",
+   "post_kind": "fox",
+   "pick": {
+    "file": "img-020.jpg",
+    "truth": "red fox",
+    "similarity": 0.5986
+   },
+   "ranked_first": {
+    "file": "img-020.jpg",
+    "truth": "red fox",
+    "similarity": 0.5986
+   }
+  },
+  {
+   "slug": "wolf-pack-winter-hunt",
+   "split": "tune",
+   "expected": "gray wolf",
+   "post_kind": "wolf",
+   "pick": {
+    "file": "img-044.jpg",
+    "truth": "gray wolf",
+    "similarity": 0.8648
+   },
+   "ranked_first": {
+    "file": "img-044.jpg",
+    "truth": "gray wolf",
+    "similarity": 0.8648
+   }
+  },
+  {
+   "slug": "canis-lupus-yellowstone",
+   "split": "test",
+   "expected": "gray wolf",
+   "post_kind": "wolf",
+   "pick": {
+    "file": "img-045.jpg",
+    "truth": "gray wolf",
+    "similarity": 0.7392
+   },
+   "ranked_first": {
+    "file": "img-045.jpg",
+    "truth": "gray wolf",
+    "similarity": 0.7392
+   }
+  },
+  {
+   "slug": "training-your-dog",
+   "split": "tune",
+   "expected": "dog",
+   "post_kind": "dog",
+   "pick": {
+    "file": "img-043.jpg",
+    "truth": "dog",
+    "similarity": 0.4896
+   },
+   "ranked_first": {
+    "file": "img-043.jpg",
+    "truth": "dog",
+    "similarity": 0.4896
+   }
+  },
+  {
+   "slug": "choosing-a-family-dog",
+   "split": "test",
+   "expected": "dog",
+   "post_kind": "dog",
+   "pick": {
+    "file": "img-043.jpg",
+    "truth": "dog",
+    "similarity": 0.4921
+   },
+   "ranked_first": {
+    "file": "img-043.jpg",
+    "truth": "dog",
+    "similarity": 0.4921
+   }
+  },
+  {
+   "slug": "grizzly-hibernation",
+   "split": "tune",
+   "expected": "grizzly bear",
+   "post_kind": "bear",
+   "pick": {
+    "file": "img-033.jpg",
+    "truth": "grizzly bear",
+    "similarity": 0.6553
+   },
+   "ranked_first": {
+    "file": "img-033.jpg",
+    "truth": "grizzly bear",
+    "similarity": 0.6553
+   }
+  },
+  {
+   "slug": "ursus-arctos-horribilis",
+   "split": "test",
+   "expected": "grizzly bear",
+   "post_kind": "bear",
+   "pick": {
+    "file": "img-028.jpg",
+    "truth": "grizzly bear",
+    "similarity": 0.6666
+   },
+   "ranked_first": {
+    "file": "img-028.jpg",
+    "truth": "grizzly bear",
+    "similarity": 0.6666
+   }
+  },
+  {
+   "slug": "mule-deer-migration",
+   "split": "tune",
+   "expected": "mule deer",
+   "post_kind": "deer",
+   "pick": {
+    "file": "img-007.jpg",
+    "truth": "mule deer",
+    "similarity": 0.6763
+   },
+   "ranked_first": {
+    "file": "img-007.jpg",
+    "truth": "mule deer",
+    "similarity": 0.6763
+   }
+  },
+  {
+   "slug": "why-deer-grow-antlers",
+   "split": "test",
+   "expected": "mule deer",
+   "post_kind": "deer",
+   "pick": {
+    "file": "img-001.jpg",
+    "truth": "mule deer",
+    "similarity": 0.6829
+   },
+   "ranked_first": {
+    "file": "img-001.jpg",
+    "truth": "mule deer",
+    "similarity": 0.6829
+   }
+  },
+  {
+   "slug": "coyotes-in-cities",
+   "split": "tune",
+   "expected": "coyote",
+   "post_kind": "coyote",
+   "pick": {
+    "file": "img-005.jpg",
+    "truth": "coyote",
+    "similarity": 0.601
+   },
+   "ranked_first": {
+    "file": "img-005.jpg",
+    "truth": "coyote",
+    "similarity": 0.601
+   }
+  },
+  {
+   "slug": "wild-fox-species",
+   "split": "test",
+   "expected": "red fox",
+   "post_kind": "fox",
+   "pick": {
+    "file": "img-046.jpg",
+    "truth": "red fox",
+    "similarity": 0.6562
+   },
+   "ranked_first": {
+    "file": "img-046.jpg",
+    "truth": "red fox",
+    "similarity": 0.6562
+   }
+  },
+  {
+   "slug": "indoor-cats",
+   "split": "tune",
+   "expected": null,
+   "post_kind": "cat",
+   "pick": null,
+   "ranked_first": {
+    "file": "img-011.jpg",
+    "truth": "dog",
+    "similarity": 0.3475
+   }
+  },
+  {
+   "slug": "octopus-camouflage",
+   "split": "tune",
+   "expected": null,
+   "post_kind": "octopus",
+   "pick": null,
+   "ranked_first": {
+    "file": "img-050.jpg",
+    "truth": "gray wolf",
+    "similarity": 0.2997
+   }
+  },
+  {
+   "slug": "sourdough-at-home",
+   "split": "test",
+   "expected": null,
+   "post_kind": "bread",
+   "pick": null,
+   "ranked_first": {
+    "file": "img-049.jpg",
+    "truth": "dog",
+    "similarity": 0.2709
+   }
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+name: flyrank-capstone-image-relevance
+requires: "Docker, and Ollama on the host with: ollama pull qwen3.5:4b && ollama pull all-minilm"
+setup: cp .env.example .env
+run: docker compose up -d --build --wait
+seed: docker compose exec api python -m app.seed
+test: docker compose exec api python -m pytest -q
+probes: python scripts/probes.py
+eval: python scripts/eval.py
+base_url: http://localhost:8001
+endpoints:
+  - {method: POST, path: /jobs, body: '{"kind": "tag_images"}'}
+  - {method: POST, path: /jobs, body: '{"kind": "index_posts"}'}
+  - {method: GET, path: "/jobs/{id}"}
+  - {method: GET, path: /images}
+  - {method: GET, path: "/images?flagged=true"}
+  - {method: GET, path: /posts}
+  - {method: GET, path: "/posts/{id}/images"}
+  - {method: GET, path: "/posts/{id}/images/{image_id}/check"}
+  - {method: GET, path: "/suggestions/{id}"}
+  - {method: POST, path: "/suggestions/{id}/approve"}
+  - {method: POST, path: "/suggestions/{id}/reject"}
+  - {method: GET, path: /review}
+  - {method: GET, path: /costs}
+  - {method: GET, path: /health}
+docs: http://localhost:8001/docs

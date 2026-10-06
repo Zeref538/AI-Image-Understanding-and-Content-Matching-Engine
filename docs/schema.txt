@@ -1,0 +1,48 @@
+﻿               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | ai_calls           | table | postgres
+ public | alerts             | table | postgres
+ public | embeddings         | table | postgres
+ public | image_metadata     | table | postgres
+ public | image_tags         | table | postgres
+ public | images             | table | postgres
+ public | job_items          | table | postgres
+ public | jobs               | table | postgres
+ public | post_understanding | table | postgres
+ public | posts              | table | postgres
+ public | reviews            | table | postgres
+ public | schema_migrations  | table | postgres
+ public | suggestions        | table | postgres
+(13 rows)
+
+     tablename      |                 indexname                  
+--------------------+--------------------------------------------
+ ai_calls           | ai_calls_day
+ ai_calls           | ai_calls_job
+ ai_calls           | ai_calls_pkey
+ ai_calls           | ai_calls_target
+ alerts             | alerts_pkey
+ embeddings         | embeddings_pkey
+ image_metadata     | image_metadata_flagged
+ image_metadata     | image_metadata_kind
+ image_metadata     | image_metadata_pkey
+ image_tags         | image_tags_pkey
+ image_tags         | image_tags_tag
+ images             | images_file_key
+ images             | images_pkey
+ job_items          | job_items_due
+ job_items          | job_items_job_id_target_type_target_id_key
+ job_items          | job_items_pkey
+ jobs               | jobs_idempotency_key_key
+ jobs               | jobs_pkey
+ post_understanding | post_understanding_pkey
+ posts              | posts_pkey
+ posts              | posts_slug_key
+ reviews            | reviews_pkey
+ schema_migrations  | schema_migrations_pkey
+ suggestions        | suggestions_pkey
+ suggestions        | suggestions_post_id_image_id_key
+ suggestions        | suggestions_post_rank
+(26 rows)
+
