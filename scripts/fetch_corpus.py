@@ -16,7 +16,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "images"
-UA = {"User-Agent": "flyrank-capstone-image-relevance (github.com/Zeref538)"}
+UA = {"User-Agent": "AI-Image-Understanding-and-Content-Matching-Engine (github.com/Zeref538)"}
 
 
 def main() -> None:
