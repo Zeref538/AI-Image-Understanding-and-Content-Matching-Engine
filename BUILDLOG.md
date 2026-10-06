@@ -16,7 +16,7 @@ I built this with an AI coding assistant. It drafted most of the code; I set the
 
 3. **The embedding model doesn't know Latin.** The brief's "Vulpes vulpes matches red fox" failed at the first step: all-minilm scored "Vulpes vulpes" 0.106 against a red-fox caption, and nomic-embed-text ranked a golden retriever (0.396) above the fox (0.380). So posts now go through the same understanding step as images: a language model reads the post and names the animal, and that description is embedded. The two Latin-only posts were then read as "red fox" and "grizzly bear".
 
-4. **Self-reported confidence was useless.** The vision model said 0.95 for a photo of paw prints in snow. Flagging on that number alone would flag nothing. The vision call now also asks for token log-probabilities, and the image is flagged on the probability the model actually gave its answer. On a coyote photo that was 0.53, with "fox" at 0.23 and "wolf" at 0.07: the real uncertainty, which the 0.95 hid.
+4. **Self-reported confidence was useless.** The vision model said 0.95 for a photo of paw prints in snow. Flagging on that number alone would flag nothing. The vision call now also asks for token log-probabilities, and the image is flagged on the probability the model actually gave its answer. In an early one-question test on a coyote photo that was 0.53, with "fox" at 0.23 and "wolf" at 0.07: the real uncertainty, which the 0.95 hid.
 
 5. **Two FastAPI bugs the tests caught.** One shared `Path(ge=1)` object across all routes made FastAPI expect a `job_id` on every route (`GET /posts/999/images` answered 422 instead of 404); it is now an `Annotated` type. And `JSONResponse` cannot serialise a `datetime`, which broke `POST /jobs`; it now goes through `jsonable_encoder`.
 
