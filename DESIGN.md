@@ -21,7 +21,7 @@ The vision model must return exactly this, validated with Pydantic before anythi
 
 `kind` is one lowercase word (fox, wolf, dog), asked for **first**, so the model commits to it before writing anything that could steer it. `confidence` is the model's own guess, which small models overstate, so it is not trusted alone: the request also asks for **token log-probabilities**, and the probability the model gave its `kind` answer is stored as `kind_prob`, with the runner-up answers ("coyote 0.53, fox 0.23, wolf 0.07").
 
-An image is **flagged**, not accepted, when `kind_prob < 0.80` (first set at 0.60; raised after the real run, see README) or `confidence < 0.50`, or when the output fails validation twice.
+An image is **flagged**, not accepted, when `kind_prob < 0.80` (first set at 0.60; raised after the real run, see README) or `confidence < 0.50`. Output that fails validation is never stored: it is retried twice, then the item fails with an alert.
 
 ## Matching strategy
 
